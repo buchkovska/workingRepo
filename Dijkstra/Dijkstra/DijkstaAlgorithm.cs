@@ -34,6 +34,7 @@ namespace Dijkstra
                 if (node.TotalCost + con.Cost < con.Node.TotalCost && con.Node.Visited != true)
                 {
                     con.Node.TotalCost = node.TotalCost + con.Cost;
+                    con.Node.PreviousNode = NodeFlyweight.GetNode(node.Id);
                 }
             }
         }
@@ -53,8 +54,6 @@ namespace Dijkstra
             }
 
             Node next = NodeFlyweight.GetNode(nextId);
-            next.TotalCost = minCost;
-            next.PreviousNode = NodeFlyweight.GetNode(current);
             next.Visited = true;
             return next;
         }
